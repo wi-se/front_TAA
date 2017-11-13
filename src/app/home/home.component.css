@@ -1,0 +1,66 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: right;
+  margin: 15px;
+}
+
+.sidenav {
+  min-width: 250px;
+}
+body {
+  height: 98%;
+}
+*{
+  box-sizing: border-box;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.flex {
+  flex: 1;
+}
+.sidenav-img {
+  width:250px;
+  margin-left:2px;
+  margin-right: 2px;
+  height: 200px;
+}
+
+.card {
+  width: 400px;
+  margin-right: 20px;
+}
+
+.header-image {
+  background-image: url('/assets/images/wknd-advisor.png');
+  background-size: cover;
+}
+.sidenav-button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.sidenav-message {
+  font-family:sans-serif;
+  font-weight: 300;
+  margin : 2px;
+  text-align: center;
+}
+.sidnave-action {
+  margin-top : 40px;
+}
+.sidenave-button{
+  margin-top: 10px;
+  width:95%;
+  margin-left: 2px;
+  margin-right: 2px; 
+}

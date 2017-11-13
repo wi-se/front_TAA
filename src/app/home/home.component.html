@@ -1,0 +1,48 @@
+<div class="row" *ngIf="showComponent"> 
+  <div class="flex">
+      <mat-sidenav-container class="container">
+        
+          <mat-sidenav #sidenav class="sidenav">
+            <img src="/assets/images/wknd-advisor.png" class="sidenav-img">
+            <div>
+              <label class="sidenav-message">Welcome {{ username }} :</label>
+              <div class="sidenav-action">
+                <button mat-raised-button color="basic" class="sidenave-button">My informations</button>
+              </div>
+              <div class="sidenav-action">
+                <button mat-raised-button color="basic" class="sidenave-button">My preferences</button>                  
+              </div>
+              <div class="sidenav-action">
+                  <button mat-raised-button color="basic" class="sidenave-button" (click)="logout()">Logout</button>                  
+              </div>
+              <div>
+                  <button mat-raised-button color="basic" class="sidenave-button" (click)="delete()">delete</button>                                    
+              </div>
+            </div>
+          </mat-sidenav>
+        
+          <div class="sidenav-content">
+              <div *ngFor="let a of activities">
+                  <mat-card class="card">
+                      <mat-card-header>
+                        <div mat-card-avatar class="header-image"></div>
+                        <mat-card-title>{{ a.name}}</mat-card-title>
+                        <mat-card-subtitle>Proposed by weekend-advisor</mat-card-subtitle>
+                      </mat-card-header>
+                      <img mat-card-image src="{{ a.image}}" alt="Photo of a Shiba Inu">
+                      <mat-card-content>
+                        <p>{{ a.description}}</p>
+                      </mat-card-content>
+                    </mat-card>
+              </div>
+            <button type="button" color="primary" mat-fab class="sidenav-button" (click)="sidenav.open()">
+                <mat-icon>expand_more</mat-icon>
+            </button>
+          </div>
+
+          
+            
+        </mat-sidenav-container>
+  </div>
+
+</div>

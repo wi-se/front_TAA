@@ -1,0 +1,4 @@
+.register-information-form-content {
+    display: flex;
+    flex-direction: column;
+}

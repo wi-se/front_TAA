@@ -1,0 +1,88 @@
+
+<div *ngIf="showComponent">
+  <mat-horizontal-stepper [linear]="isLinear">
+    <mat-step [stepControl]="informationGroup" >
+      <form [formGroup]="informationGroup">
+        <ng-template matStepLabel required>Fill out your information</ng-template>
+        <div class="register-information-form-content"> 
+          <mat-form-field>
+            <input matInput placeholder="Username" formControlName="username" [(ngModel)]="usernameValue" validateUnique="check-username">
+            <mat-error *ngIf="informationGroup.get('username').hasError('required')">
+              This field is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="informationGroup.get('username').hasError('minlength')">
+              This field should be at least 4 character
+            </mat-error>  
+            <mat-error *ngIf="informationGroup.get('username').hasError('maxLength')">
+              This field should be at must 25 character
+            </mat-error>
+            <mat-error *ngIf="informationGroup.get('username').hasError('validateUnique')">
+              Username already exists
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="margin-top:25px">
+            <input matInput placeholder="email" formControlName="email"  [(ngModel)]="emailValue" validateUnique="check-email">
+            <mat-error *ngIf="informationGroup.get('email').hasError('required')">
+              This field is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="informationGroup.get('email').hasError('email')">
+              This isn't a valid email
+            </mat-error>
+            <mat-error *ngIf="informationGroup.get('email').hasError('validateUnique')">
+              Email already exists
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div >
+          <button *ngIf="isValidInformationGroup()" mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+
+    </mat-step>
+    <mat-step [stepControl]="passwordGroup">
+      <form [formGroup]="passwordGroup">
+        <ng-template matStepLabel>Fill out your password</ng-template>
+        <div class="register-information-form-content">
+          <mat-form-field id="pwd">
+            <input matInput placeholder="Password" formControlName="password" [type]="hide1 ? 'password' : 'text'" id="passwordValue"  [(ngModel)]="passwordValue">
+            <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility' : 'visibility_off'}}</mat-icon> 
+            <mat-error *ngIf="passwordGroup.get('password').hasError('minlength')">
+              This field should be at least 6 character
+            </mat-error>  
+            <mat-error *ngIf="passwordGroup.get('password').hasError('required')">
+              This field is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="margin-bottom:35px;margin-top:20px">
+            <input matInput placeholder="Password" formControlName="passwordAgain" id="passwordAgainValue" validateEqual="password" [type]="hide2 ? 'password' : 'text'" >
+            <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility' : 'visibility_off'}}</mat-icon> 
+            <mat-error *ngIf="passwordGroup.get('passwordAgain').hasError('minlength')">
+              This field should be at least 6 character
+            </mat-error>  
+            <mat-error *ngIf="passwordGroup.get('passwordAgain').hasError('required')">
+              This field is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="!passwordGroup.get('passwordAgain').valid">
+                The passwords aren't equals
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious >Back</button>
+          <button mat-raised-button color="primary" matStepperNext *ngIf="isValidPasswordGroup()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Validation</ng-template>
+        <p>Click on register to create your account</p>
+      <div>
+        <button mat-button matStepperPrevious style="margin-top:15px">Back</button>
+        <button mat-raised-button color="primary" matStepperNext style="margin-top:15px" (click)="createUser()">Register</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
